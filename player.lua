@@ -12,16 +12,16 @@ function playerDraw()
 end	
 
 function playerMove(v)
-	if love.love.keyboard.isDown("right")
+	if love.keyboard.isDown("right") then
 		player.x = player.x + player.speed * v
 	end
-	if love.love.keyboard.isDown("left")
+	if love.keyboard.isDown("left") then
 		player.x = player.x - player.speed * v
 	end
-	if love.love.keyboard.isDown("up")
+	if love.keyboard.isDown("up") then
 		player.y = player.y - player.speed * v
 	end
-	if love.love.keyboard.isDown("down")
+	if love.keyboard.isDown("down") then
 		player.y = player.y + player.speed * v
 	end
 end

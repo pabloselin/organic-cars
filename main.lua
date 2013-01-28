@@ -1,4 +1,4 @@
-require "player.lua"
+require ("player")
 
 function love.load()
 
