@@ -4,9 +4,11 @@
 text = "No collision yet."
 grav = "Not seted yet"
 particleImage = love.graphics.newImage("images/love-ball.png")
+invertG = false
 onGround = false
 isJumping = false
 impulse = -600
+piValue = 3.14
 --Particle Variables
 systems = {}
 current = 1
@@ -103,13 +105,28 @@ function love.update(dt)
 	else 
 		isJumping = false
 	end
+
+	if  invertG then
+		if body:getAngle() < piValue then
+			body:setAngle( body:getAngle() + piValue *2*dt )
+			if body:getAngle() > piValue then
+				body:setAngle( piValue )
+			end
+		end
+	else 
+		if body:getAngle() > 0 then
+			body:setAngle( body:getAngle() - piValue *2*dt )
+			if body:getAngle() < 0 then
+				body:setAngle( 0 )
+			end			
+		end
+	end
 end
 
 function love.draw()
 	-- Draws the ground.
 	love.graphics.polygon("line", groundShape:getPoints())
 	love.graphics.polygon("line", floorShape:getPoints())
-
 	-- Draw the circle.
 	love.graphics.draw(car,body:getX(), body:getY(), body:getAngle(),1,1,car:getWidth()/2,car:getHeight()/2)
 
@@ -132,7 +149,8 @@ function love.keypressed(k)
 		end
 	end
 	if k == "g" then
-		grav = "ais"
+		invertG =  not invertG
+		body:applyLinearImpulse(0,1)
 		gx, gy = world:getGravity()
 		world:setGravity(0, -gy)
 		impulse = -impulse
