@@ -28,21 +28,24 @@ function carUpdate( dt )
 	else 
 		isJumping = false
 	end
-
-	if love.keyboard.isDown("right") then
-		if(invertG) then
-			body:applyLinearImpulse( impulse*3*dt , 0)
-		else
-			body:applyLinearImpulse( -impulse*3*dt , 0)
-		end
-	end	 
-	if love.keyboard.isDown("left") then
-		if(invertG) then
-			body:applyLinearImpulse( -impulse*3*dt , 0)
-		else
-			body:applyLinearImpulse( impulse*3*dt , 0)
-		end
-	end	 
+	vx, vy = body:getLinearVelocity( )
+	text = " Speed: " .. vx
+	if vx < maxSpeed and vx > -maxSpeed then
+		if love.keyboard.isDown("right") then
+			if(invertG) then
+				body:applyLinearImpulse( impulse*3*dt , 0)
+			else
+				body:applyLinearImpulse( -impulse*3*dt , 0)
+			end
+		end	 
+		if love.keyboard.isDown("left") then
+			if(invertG) then
+				body:applyLinearImpulse( -impulse*3*dt , 0)
+			else
+				body:applyLinearImpulse( impulse*3*dt , 0)
+			end
+		end	 
+	end
 
 	if  invertG then
 		if body:getAngle() < piValue then
