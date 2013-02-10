@@ -1,4 +1,4 @@
-function love.conf(t)
-author = "rude"
-love_version = "0.6.0"
+function love.conf(a)
+	a.screen.width = 1200
+	a.screen.height = 600
 end

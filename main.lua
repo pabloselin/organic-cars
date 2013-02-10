@@ -1,3 +1,4 @@
+require ("camera")
 require ("particles")
 require ("world")
 require ("car")
@@ -10,6 +11,8 @@ function love.load()
 end
 
 function love.update(dt)
+	camera.x =  body:getX() - love.graphics.getWidth()/2 
+	--camera.y =  body:getY() - love.graphics.getHeight()/2
 	-- Updates the world
 	world:update(dt)
 	--Update the particles
@@ -19,6 +22,8 @@ function love.update(dt)
 end
 
 function love.draw()
+	camera:set()
+	
 	-- Draws the ground.
 	love.graphics.polygon("line", groundShape:getPoints())
 	love.graphics.polygon("line", floorShape:getPoints())
@@ -33,6 +38,8 @@ function love.draw()
 	love.graphics.setColorMode("modulate")
 	love.graphics.setBlendMode("additive")
 	love.graphics.draw(systems[current], 0, 0)
+	
+	camera:unset()
 end
 
 function love.keypressed(k)
