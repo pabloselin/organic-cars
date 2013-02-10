@@ -4,7 +4,6 @@ require ("world")
 require ("car")
 require ("globals")
 
-
 function love.load()
 	loadParticles()
 	loadWorld()
@@ -24,11 +23,17 @@ end
 
 function love.draw()
 	camera:set()
-
+	love.graphics.setColorMode('replace')
+	love.graphics.draw(bg, -3000, 0)
+	love.graphics.setLineWidth(8)
+	love.graphics.setColor(14, 228, 1)
 	love.graphics.polygon("line", groundShape:getPoints())
 	love.graphics.polygon("line", floorShape:getPoints())
 	love.graphics.polygon("line", platShape:getPoints())
+	love.graphics.polygon("line", wallLeftShape:getPoints())
+	love.graphics.polygon("line", wallRightShape:getPoints())
 
+	love.graphics.setColor(0, 0, 0)
 	-- Draw the car.
 	love.graphics.draw(car,body:getX(), body:getY(), body:getAngle(),1,1,car:getWidth()/2,car:getHeight()/2)
 
@@ -37,8 +42,8 @@ function love.draw()
 	love.graphics.print(grav, 5, 40)
 
 	--Particle Draw
-	love.graphics.setColorMode("modulate")
-	love.graphics.setBlendMode("additive")
+	--love.graphics.setColorMode("modulate")
+	--love.graphics.setBlendMode("additive")
 	love.graphics.draw(systems[current], 0, 0)
 
 	camera:unset()
