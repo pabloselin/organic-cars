@@ -29,6 +29,21 @@ function carUpdate( dt )
 		isJumping = false
 	end
 
+	if love.keyboard.isDown("right") then
+		if(invertG) then
+			body:applyLinearImpulse( impulse*3*dt , 0)
+		else
+			body:applyLinearImpulse( -impulse*3*dt , 0)
+		end
+	end	 
+	if love.keyboard.isDown("left") then
+		if(invertG) then
+			body:applyLinearImpulse( -impulse*3*dt , 0)
+		else
+			body:applyLinearImpulse( impulse*3*dt , 0)
+		end
+	end	 
+
 	if  invertG then
 		if body:getAngle() < piValue then
 			body:setAngle( body:getAngle() + piValue *2*dt )
@@ -51,6 +66,11 @@ function carKeysPressed(k)
 		-- Apply a jump impulse
 		if onGround then
 			body:applyLinearImpulse(0, impulse)
+			if invertG then
+				body:applyAngularImpulse(impulse/2)
+			else
+				body:applyAngularImpulse(-impulse/2)
+			end
 			isJumping = true
 		end
 	end

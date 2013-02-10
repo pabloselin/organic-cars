@@ -12,8 +12,8 @@ function love.load()
 end
 
 function love.update(dt)
-	--Moves the camara to set the car to the right
-	camera:setPosition(-300, 0)	
+	camera.x =  body:getX() - love.graphics.getWidth()/2 
+	--camera.y =  body:getY() - love.graphics.getHeight()/2
 	-- Updates the world
 	world:update(dt)
 	--Update the particles
@@ -23,9 +23,8 @@ function love.update(dt)
 end
 
 function love.draw()
-	--Sets the camera
 	camera:set()
-	-- Draws the ground and platforms
+
 	love.graphics.polygon("line", groundShape:getPoints())
 	love.graphics.polygon("line", floorShape:getPoints())
 	love.graphics.polygon("line", platShape:getPoints())
@@ -41,7 +40,7 @@ function love.draw()
 	love.graphics.setColorMode("modulate")
 	love.graphics.setBlendMode("additive")
 	love.graphics.draw(systems[current], 0, 0)
-	--Unsets the camera
+
 	camera:unset()
 end
 

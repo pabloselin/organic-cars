@@ -30,7 +30,7 @@ function loadWorld()
 
 	-- Create fixture between body and platform
 	plat_fixture = love.physics.newFixture( plat, platShape)
-	plat_fixture:setUserData("Platform") -- Set a string userdata
+	plat_fixture:setUserData("Platform") -- Set a string userdata	
 	
 end
 
