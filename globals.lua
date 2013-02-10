@@ -7,3 +7,4 @@ onGround = false
 isJumping = false
 impulse = -600
 piValue = 3.14
+maxSpeed = 300
