@@ -3,7 +3,7 @@ function loadCar()
 	car = love.graphics.newImage("images/cars.png")
 
 	-- Create a Body for the circle.
-	body = love.physics.newBody(world, 400, 200, "dynamic")
+	body = love.physics.newBody(world, 400, 400, "dynamic")
 	
 	-- Attatch a shape to the body.
 	--circle_shape = love.physics.newCircleShape(0,0, 32)
