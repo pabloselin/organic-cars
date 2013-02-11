@@ -1,6 +1,7 @@
 function loadCar()
 	-- Load the image of the car.
 	car = love.graphics.newImage("images/cars.png")
+	car2 = love.graphics.newImage("images/cars2.png")
 
 	-- Create a Body for the circle.
 	body = love.physics.newBody(world, 400, 400, "dynamic")
@@ -23,15 +24,19 @@ function loadCar()
 end
 
 function carUpdate( dt )
+ 	--Test
+ 	angle = angle + dt
+	x, y = 400 + math.cos(angle)*100, 300 + math.sin(angle)*100
+	--End Test
 	if love.keyboard.isDown(" ") and isJumping then
 		body:applyLinearImpulse(0, impulse*3*dt)
 	else 
 		isJumping = false
 	end
 	vx, vy = body:getLinearVelocity( )
-	text = " Speed: " .. vx
 	if vx < maxSpeed and vx > -maxSpeed then
 		if love.keyboard.isDown("right") then
+			direction = false
 			if(invertG) then
 				body:applyLinearImpulse( impulse*3*dt , 0)
 			else
@@ -39,6 +44,7 @@ function carUpdate( dt )
 			end
 		end	 
 		if love.keyboard.isDown("left") then
+			direction = true
 			if(invertG) then
 				body:applyLinearImpulse( -impulse*3*dt , 0)
 			else
@@ -91,7 +97,6 @@ function beginContact(a, b, c)
 	local aa=a:getUserData()
 	local bb=b:getUserData()
 	cx,cy, fx, fy = c:getPositions()
-	text = "Collided: " .. aa .. " and " .. bb
 	systems[current]:setPosition(cx, cy)
 	systems[current]:start()
 	onGround = true
@@ -101,7 +106,6 @@ end
 function endContact(a, b, c)
 	local aa=a:getUserData()
 	local bb=b:getUserData()
-	text = "Collision ended: " .. aa .. " and " .. bb
 	systems[current]:stop()
 	onGround = false
 end

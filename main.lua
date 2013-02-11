@@ -35,7 +35,23 @@ function love.draw()
 
 	love.graphics.setColor(0, 0, 0)
 	-- Draw the car.
-	love.graphics.draw(car,body:getX(), body:getY(), body:getAngle(),1,1,car:getWidth()/2,car:getHeight()/2)
+	if direction then
+		if not invertG then
+			love.graphics.draw(car,body:getX(), body:getY(), body:getAngle(),1,1,car:getWidth()/2,car:getHeight()/2)
+			text = " IZQUIERDA" 
+		else
+			love.graphics.draw(car2,body:getX(), body:getY(), body:getAngle(),1,1,car:getWidth()/2,car:getHeight()/2)
+			text = " IZQUIERDA"
+		end 
+	else
+		if not invertG then
+			love.graphics.draw(car2,body:getX(), body:getY(), body:getAngle(),1,1,car:getWidth()/2,car:getHeight()/2)
+			text = " IZQUIERDA" 
+		else
+			love.graphics.draw(car,body:getX(), body:getY(), body:getAngle(),1,1,car:getWidth()/2,car:getHeight()/2)
+			text = " IZQUIERDA"
+		end 
+	end
 
 	-- Draw text.
 	love.graphics.print(text, 5, 25)
