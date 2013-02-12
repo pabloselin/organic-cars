@@ -43,14 +43,6 @@ function camera:setScale(sx, sy)
   self.scaleY = sy or self.scaleY
 end
 
-function camera:follow(object)
-  --TODO Function that follows the object around
-end
-
-function camera:car(direction)
-  --TODO Function that follows the car if is moving left or right
-end
-
 function camera:shake(intensity)
   --TODO Function that makes a shake in the camera (when you crash or something)
 end
