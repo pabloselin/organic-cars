@@ -4,9 +4,7 @@ current = 1
 
 function loadParticles()
 
-	part1 = love.graphics.newImage("part1.png");
-	cloud = love.graphics.newImage("cloud.png");
-	square = love.graphics.newImage("square.png")
+	part1 = love.graphics.newImage("images/particle.png");	
 	font = love.graphics.newFont(love._vera_ttf, 10)
 
 	love.graphics.setFont(font)
